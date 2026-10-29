@@ -1,0 +1,23 @@
+{
+  "name": "triangulate",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An on-chain count of how many independent voices really stand behind a claim. A GenLayer Intelligent Contract for Studionet.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "python3 -m unittest discover -s tests -t tests && node --test tests/node/*.test.mjs",
+    "test:py": "python3 -m unittest discover -s tests -t tests",
+    "test:node": "node --test tests/node/*.test.mjs",
+    "mutation": "python3 tests/mutation.py",
+    "lint:contract": "genvm-lint check contracts/triangulate.py",
+    "deploy:contract": "node scripts/deploy.mjs",
+    "e2e": "node scripts/e2e.mjs"
+  },
+  "dependencies": {
+    "genlayer-js": "1.1.8"
+  }
+}

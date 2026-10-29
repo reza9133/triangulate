@@ -1,0 +1,241 @@
+{
+  "about": "Live scenarios for scripts/e2e.mjs. Every source is a real public page. Pages change; the preflight step reports which ones still carry the expected text before any transaction is sent. 'structure' entries are facts about the echo graph that depend only on addresses and must hold. 'expect_any' is the verdict set the scenario hopes for and is reported, not enforced. 'expect_not' lists verdicts that must never be issued for the scenario; breaking one is a failed run.",
+  "scenarios": [
+    {
+      "id": "light-speed",
+      "title": "Speed of light, three independent publishers",
+      "topic": "science",
+      "statement": "The speed of light in vacuum is exactly 299,792,458 metres per second.",
+      "anchors": [
+        "speed of light",
+        [
+          "299,792,458",
+          "299 792 458",
+          "299792458"
+        ]
+      ],
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Speed_of_light",
+          "signer": 0,
+          "expect_text": [
+            "299,792,458",
+            "299 792 458"
+          ]
+        },
+        {
+          "url": "https://physics.nist.gov/cgi-bin/cuu/Value?c",
+          "signer": 1,
+          "expect_text": [
+            "299 792 458",
+            "299792458"
+          ]
+        },
+        {
+          "url": "https://www.bipm.org/en/si-base-units/metre",
+          "signer": 2,
+          "expect_text": [
+            "299 792 458",
+            "299792458"
+          ]
+        }
+      ],
+      "expect": "TRIANGULATED",
+      "expect_any": [
+        "TRIANGULATED",
+        "CORROBORATED"
+      ],
+      "structure": {
+        "origins": 3,
+        "echoes": 0
+      },
+      "why": "Three unrelated publishers state the same defined constant. No echo edge may appear between them. Every source must carry the claim's anchors in one passage (the BIPM page on the metre does; its page on the defining constants keeps the name of the constant and its value in different places, so no single excerpt can show both)."
+    },
+    {
+      "id": "echo-github",
+      "title": "One author on two GitHub hosts is one voice",
+      "topic": "technology",
+      "statement": "The Python requests library is distributed under the Apache License, Version 2.0.",
+      "anchors": [
+        [
+          "Apache License, Version 2.0",
+          "Apache License Version 2.0",
+          "Apache 2.0",
+          "Apache-2.0"
+        ]
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/psf/requests",
+          "signer": 0,
+          "expect_text": [
+            "Apache-2.0",
+            "Apache 2.0"
+          ]
+        },
+        {
+          "url": "https://raw.githubusercontent.com/psf/requests/main/LICENSE",
+          "signer": 1,
+          "expect_text": [
+            "Apache License"
+          ]
+        }
+      ],
+      "expect": "ECHO_ONLY",
+      "expect_any": [
+        "ECHO_ONLY",
+        "UNCONFIRMED"
+      ],
+      "expect_not": [
+        "TRIANGULATED",
+        "CORROBORATED"
+      ],
+      "structure": {
+        "origins": 1,
+        "echoes": 1
+      },
+      "why": "github.com and raw.githubusercontent.com are two hosts of one account. Two pages, one voice: the claim cannot be corroborated by them however many are added."
+    },
+    {
+      "id": "echo-wikipedia",
+      "title": "Two Wikipedia editions are one publisher",
+      "topic": "science",
+      "statement": "In a vacuum, light travels at 299,792,458 metres per second.",
+      "anchors": [
+        "vacuum",
+        [
+          "299,792,458",
+          "299 792 458",
+          "299792458"
+        ]
+      ],
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Speed_of_light",
+          "signer": 0,
+          "expect_text": [
+            "299,792,458"
+          ]
+        },
+        {
+          "url": "https://simple.wikipedia.org/wiki/Speed_of_light",
+          "signer": 1,
+          "expect_text": [
+            "299,792,458",
+            "299 792 458",
+            "299792458"
+          ]
+        }
+      ],
+      "expect": "ECHO_ONLY",
+      "expect_any": [
+        "ECHO_ONLY",
+        "UNCONFIRMED"
+      ],
+      "expect_not": [
+        "TRIANGULATED",
+        "CORROBORATED"
+      ],
+      "structure": {
+        "origins": 1,
+        "echoes": 1
+      },
+      "why": "en. and simple. Wikipedia share one registrable domain, so they are merged without reading a word."
+    },
+    {
+      "id": "moon-wall-myth",
+      "title": "A popular myth must not be corroborated",
+      "topic": "history",
+      "statement": "The Great Wall of China is visible to the naked eye from the Moon.",
+      "anchors": [
+        "Great Wall",
+        "naked eye",
+        "Moon"
+      ],
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+          "signer": 0,
+          "expect_text": [
+            "naked eye"
+          ]
+        },
+        {
+          "url": "https://www.universetoday.com/articles/can-you-see-the-great-wall-of-china-from-space",
+          "signer": 1,
+          "expect_text": [
+            "Apollo astronauts"
+          ]
+        }
+      ],
+      "expect": "REFUTED",
+      "expect_any": [
+        "REFUTED",
+        "DOUBTED",
+        "CONTESTED",
+        "UNCONFIRMED",
+        "QUALIFIED",
+        "INCONCLUSIVE"
+      ],
+      "expect_not": [
+        "TRIANGULATED",
+        "CORROBORATED",
+        "ECHO_ONLY"
+      ],
+      "why": "Reputable pages say the opposite. The contract must never issue a clean bill here, whatever a model says."
+    },
+    {
+      "id": "unreachable-source",
+      "title": "An unreadable source never counts for or against",
+      "topic": "science",
+      "statement": "The speed of light in vacuum is 299,792,458 metres per second, and this value is exact.",
+      "anchors": [
+        "speed of light",
+        [
+          "299,792,458",
+          "299 792 458",
+          "299792458"
+        ]
+      ],
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Speed_of_light",
+          "signer": 0,
+          "expect_text": [
+            "299,792,458",
+            "299 792 458"
+          ]
+        },
+        {
+          "url": "https://physics.nist.gov/cgi-bin/cuu/Value?c",
+          "signer": 1,
+          "expect_text": [
+            "299 792 458",
+            "299792458"
+          ]
+        },
+        {
+          "url": "https://raw.githubusercontent.com/psf/requests/main/this-file-does-not-exist-triangulate.md",
+          "signer": 2,
+          "expect_text": []
+        }
+      ],
+      "expect": "INCONCLUSIVE",
+      "expect_any": [
+        "INCONCLUSIVE",
+        "UNCONFIRMED",
+        "QUALIFIED"
+      ],
+      "expect_not": [
+        "TRIANGULATED",
+        "CORROBORATED"
+      ],
+      "structure": {
+        "origins": 3,
+        "echoes": 0,
+        "unresolved_origins": 1
+      },
+      "why": "One of the three pages answers 404. With an unresolved source the contract refuses to issue a clean bill even if the other two agree."
+    }
+  ]
+}

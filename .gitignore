@@ -1,0 +1,9 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+artifacts/deployment.json
+artifacts/undecided-*.json
+.venv/
+*.log
