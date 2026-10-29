@@ -1,0 +1,24 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm install --no-audit --no-fund
+      - run: python3 -m unittest discover -s tests -t tests
+      - run: node --test tests/node/*.test.mjs
+      - run: pip install genvm-linter
+      - run: genvm-lint check contracts/triangulate.py
+      - name: Mutation testing (every planted bug must be caught)
+        run: python3 tests/mutation.py
