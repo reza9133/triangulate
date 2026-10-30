@@ -124,3 +124,16 @@ run.sh                     one command for everything
 * **Negation detection is English.** Contradictions in other languages are accepted only through a missing anchor.
 * **Live consensus can be noisy.** Validators must agree on the stance of every source, so a borderline page can make a run end `UNDETERMINED`. The e2e script retries once by default (`--retries`).
 * The contract was linted with the real GenVM linter and exercised on a simulator that enforces GenVM's non-deterministic-block rules, but the live network run is yours to perform: it was not possible to reach Studionet or the scenario sites from the environment this project was built in.
+
+## Frontend
+
+A multi-page web app for the deployed contract lives in `frontend/` (Vite, React, TypeScript, three.js). It has light, dim and dark themes, an EIP-6963 wallet picker with working connect, disconnect and network switching, a claim explorer, claim and examination pages with an echo graph, a claim form with client-side anchor validation, a publisher inspector, and full documentation.
+
+```bash
+cd frontend
+npm install
+npm run dev      # http://localhost:5173
+npm run check    # typecheck, lint, format, tests, production build
+```
+
+The contract address and RPC endpoint are set in `frontend/.env` (see `.env.example`). Details and limits: `frontend/NOTES.md`.
