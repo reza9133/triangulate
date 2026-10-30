@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96" role="img" aria-label="Triangulate">
+  <defs><linearGradient id="g" x1="8" y1="90" x2="86" y2="6" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0b8f7d"/><stop offset="1" stop-color="#e59a12"/></linearGradient></defs>
+  <g transform="translate(4 4) scale(1.375)">
+    <path d="M32 5 L59 55 L5 55 Z" fill="none" stroke="url(#g)" stroke-width="4.5" stroke-linejoin="round"/>
+    <g stroke="#14171f" stroke-width="2" stroke-linecap="round" opacity=".85"><path d="M32 5V38"/><path d="M5 55L30 40.5"/><path d="M59 55L34 40.5"/></g>
+    <circle cx="32" cy="5" r="4" fill="#14171f"/><circle cx="5" cy="55" r="4" fill="#14171f"/><circle cx="59" cy="55" r="4" fill="#14171f"/>
+    <circle cx="32" cy="40" r="6.5" fill="url(#g)"/><circle cx="32" cy="40" r="2.3" fill="#fff"/>
+  </g>
+  <text x="104" y="62" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-1.5" fill="#14171f">Triangulate</text>
+</svg>

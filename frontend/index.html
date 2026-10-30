@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triangulate · how many independent voices stand behind a claim</title>
+    <meta
+      name="description"
+      content="Triangulate is a GenLayer Intelligent Contract that counts independent origins behind a claim, collapsing echoes before it counts."
+    />
+    <meta name="theme-color" content="#f5f3ec" />
+    <link rel="icon" type="image/svg+xml" href="/brand/triangulate-mark.svg" />
+    <meta property="og:title" content="Triangulate" />
+    <meta
+      property="og:description"
+      content="Count origins, not links. An Intelligent Contract on GenLayer Studionet."
+    />
+    <meta property="og:image" content="/brand/triangulate-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      try {
+        var t = localStorage.getItem('triangulate.theme');
+        if (t === 'light' || t === 'dim' || t === 'dark') document.documentElement.dataset.theme = t;
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.dataset.theme = 'dim';
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
